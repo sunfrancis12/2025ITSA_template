@@ -1,0 +1,9 @@
+# 只允許 api.php 被訪問
+<Files "api.php">
+    Require all granted
+</Files>
+
+# 禁止其他檔案
+<FilesMatch "^(?!api\.php$).*$">
+    Require all denied
+</FilesMatch>

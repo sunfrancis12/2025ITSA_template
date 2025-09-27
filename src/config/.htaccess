@@ -1,0 +1,2 @@
+# 禁止直接訪問配置檔案
+Require all denied

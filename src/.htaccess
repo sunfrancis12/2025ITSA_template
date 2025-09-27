@@ -1,0 +1,40 @@
+# Apache 安全設定
+
+# 禁止訪問 .md 文件
+<FilesMatch "\.md$">
+    Require all denied
+</FilesMatch>
+
+# 禁止訪問 SQL 文件
+<FilesMatch "\.sql$">
+    Require all denied
+</FilesMatch>
+
+# 禁止訪問 Docker 相關文件
+<FilesMatch "^(Dockerfile|docker-compose)">
+    Require all denied
+</FilesMatch>
+
+# 禁止訪問 .bat 文件
+<FilesMatch "\.bat$">
+    Require all denied
+</FilesMatch>
+
+# 禁止目錄瀏覽
+Options -Indexes
+
+# 設定預設首頁
+DirectoryIndex index.php index.html
+
+# 防止訪問隱藏檔案
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+# 安全標頭
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
